@@ -25,13 +25,13 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2024. All rights reserved.</string>
+	<string>Copyright © 2026 Gennaro Eduardo Tangari. All rights reserved.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>PhotoDensityMap uses location data from your photos to display them on a map.</string>
 	<key>NSMainStoryboardFile</key>
 	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>PhotoDensityMap needs access to your photo library to display the geographic distribution and density of your photos on a map.</string>
-	<key>NSLocationUsageDescription</key>
-	<string>PhotoDensityMap uses location data from your photos to display them on a map.</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>
