@@ -1,0 +1,155 @@
+# Xcode
+## Build generated
+build/
+DerivedData/
+
+## Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+
+## Other
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+*.xcodeproj/**/xcuserdata/
+
+## Xcode Patch
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+*.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/
+
+# CocoaPods
+Pods/
+*.xcworkspace
+!*.xcodeproj/project.xcworkspace/
+
+# Carthage
+Carthage/Build/
+Carthage/Checkouts/
+
+# Accio
+Dependencies/
+.accio/
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Code Injection
+iOSInjectionProject/
+
+# Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Swift Playgrounds
+*.playgroundbook/userdata/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+## Icon
+Icon
+
+## Thumbnails
+._*
+
+## Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+## Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# IDEs and Editors
+## VS Code
+.vscode/
+*.code-workspace
+
+## AppCode
+.idea/
+
+## Vim
+*.swp
+*.swo
+*~
+
+# Archives
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# App packaging
+*.app
+*.framework
+*.dylib
+*.a
+
+# Testing
+*.xcresult
+coverage/
+
+# Provisioning profiles
+*.mobileprovision
+*.provisionprofile
+
+# Secrets and credentials
+*.pem
+*.p12
+*.key
+Secrets/
+secrets.json
+GoogleService-Info.plist
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Crashlytics
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Backup files
+*.bak
+*.backup
+
+# User-specific xcconfig
+*.xcconfig
+!Shared.xcconfig
