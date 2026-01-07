@@ -256,11 +256,41 @@ class PhotoLocationManager: ObservableObject {
             }
         }
         
-        // Find maximum density for normalization
+        // Find maximum density and calculate adaptive normalization
         var maxDensity = 0.0
+        var allValues: [Double] = []
         for row in grid {
             for value in row {
                 maxDensity = max(maxDensity, value)
+                if value > 0 {
+                    allValues.append(value)
+                }
+            }
+        }
+        
+        // Calculate normalization based on current viewport
+        let normalizedMaxDensity: Double
+        if allValues.isEmpty {
+            normalizedMaxDensity = 1.0
+        } else {
+            // Sort values to find percentiles
+            allValues.sort()
+            
+            // Use 90th percentile for more responsive normalization
+            let percentile90Index = Int(Double(allValues.count) * 0.90)
+            let percentile90 = allValues[min(percentile90Index, allValues.count - 1)]
+            
+            // Also consider median for very sparse areas
+            let medianIndex = allValues.count / 2
+            let median = allValues[medianIndex]
+            
+            // Adaptive normalization: use percentile for dense areas, boost for sparse areas
+            if allValues.count > 100 {
+                // Dense view: use 90th percentile
+                normalizedMaxDensity = percentile90
+            } else {
+                // Sparse view: use a blend to make colors more visible
+                normalizedMaxDensity = max(median * 3, maxDensity * 0.25)
             }
         }
         
@@ -269,7 +299,7 @@ class PhotoLocationManager: ObservableObject {
             gridWidth: gridSize,
             gridHeight: gridSize,
             boundingBox: region,
-            maxDensity: maxDensity,
+            maxDensity: normalizedMaxDensity,
             cellSizeDegrees: cellSizeLat
         )
     }

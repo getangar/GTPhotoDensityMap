@@ -139,19 +139,23 @@ class HeatmapOverlay: NSObject, MKOverlay {
     }
     
     var boundingMapRect: MKMapRect {
-        let topLeft = MKMapPoint(CLLocationCoordinate2D(
+        // Calculate the corners of the bounding box
+        let northWest = MKMapPoint(CLLocationCoordinate2D(
             latitude: heatmapData.boundingBox.center.latitude + heatmapData.boundingBox.span.latitudeDelta / 2,
             longitude: heatmapData.boundingBox.center.longitude - heatmapData.boundingBox.span.longitudeDelta / 2
         ))
-        let bottomRight = MKMapPoint(CLLocationCoordinate2D(
+        let southEast = MKMapPoint(CLLocationCoordinate2D(
             latitude: heatmapData.boundingBox.center.latitude - heatmapData.boundingBox.span.latitudeDelta / 2,
             longitude: heatmapData.boundingBox.center.longitude + heatmapData.boundingBox.span.longitudeDelta / 2
         ))
+        
+        // MKMapPoint Y increases as you go SOUTH (not north!)
+        // So northWest.y is smaller than southEast.y
         return MKMapRect(
-            x: min(topLeft.x, bottomRight.x),
-            y: min(topLeft.y, bottomRight.y),
-            width: abs(bottomRight.x - topLeft.x),
-            height: abs(bottomRight.y - topLeft.y)
+            x: northWest.x,
+            y: northWest.y,
+            width: southEast.x - northWest.x,
+            height: southEast.y - northWest.y
         )
     }
     
