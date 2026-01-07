@@ -115,13 +115,16 @@ struct HeatmapMapView: NSViewRepresentable {
         }
         
         func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-            parent.mapViewModel.currentRegion = mapView.region
-            
-            // Trigger heatmap recalculation based on new zoom level
-            NotificationCenter.default.post(
-                name: .mapRegionChanged,
-                object: mapView.region
-            )
+            // Dispatch updates asynchronously to avoid publishing changes during view updates
+            DispatchQueue.main.async {
+                self.parent.mapViewModel.currentRegion = mapView.region
+                
+                // Trigger heatmap recalculation based on new zoom level
+                NotificationCenter.default.post(
+                    name: .mapRegionChanged,
+                    object: mapView.region
+                )
+            }
         }
     }
 }

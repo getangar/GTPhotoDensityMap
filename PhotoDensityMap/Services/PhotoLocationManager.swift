@@ -142,7 +142,7 @@ class PhotoLocationManager: ObservableObject {
                 if processedCount % batchSize == 0 {
                     let currentCount = processedCount
                     let currentLocations = locations.count
-                    Task { @MainActor in
+                    Task { @MainActor [currentCount, currentLocations] in
                         self.loadedPhotosCount = currentCount
                         self.totalPhotosWithLocation = currentLocations
                     }
@@ -150,7 +150,7 @@ class PhotoLocationManager: ObservableObject {
             }
             
             // Final update
-            await MainActor.run {
+            await MainActor.run { [processedCount, locations] in
                 self.loadedPhotosCount = processedCount
                 self.totalPhotosWithLocation = locations.count
                 self.photoLocations = locations
